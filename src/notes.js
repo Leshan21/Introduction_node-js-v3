@@ -37,3 +37,6 @@ export const removeNote = async id => {
         return id;
     }
 }
+
+// Function to remove all notes
+export const removeAllNotes = async () => saveDB({ notes: [] });
