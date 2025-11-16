@@ -47,13 +47,13 @@ There is a `web [port]` command stub but it does not start a web server yet.
 
 db.json example:
 {
-  "notes": [
-    {
-      "id": 1617901234567,
-      "tags": ["tag1","tag2"],
-      "content": "Note text"
-    }
-  ]
+"notes": [
+{
+"id": 1617901234567,
+"tags": ["tag1","tag2"],
+"content": "Note text"
+}
+]
 }
 
 IDs use Date.now(). Tags are comma-separated with --tags or -t.
