@@ -10,7 +10,7 @@ export const newNote = async (note, tags) => {
     content: note
   }
 
-  await insetDB(newNote);
+  await insertDB(newNote);
   return newNote;
 }
 
