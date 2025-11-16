@@ -1,9 +1,19 @@
-const add = (num1, num2) => num1 + num2;
+import { expect, jest } from '@jest/globals';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(add(1, 2)).toBe(3);
-});
+jest.unstable_mockModule('../src/db.js', () => ({
+  insertDB: jest.fn(),
+  getDB: jest.fn(),
+  saveDB: jest.fn(),
+}));
 
+const { insertDB, getDB, saveDB } = await import('../src/db.js');
+const { newNote, getAllNotes, removeNote } = await import('../src/notes.js');
+
+beforeEach(() => {
+  insertDB.mockClear();
+  getDB.mockClear();
+  saveDB.mockClear();
+})
 
 
 // leshan@Leshan-mint:~/Desktop/Database/Projects/Introduction_node-js-v3$ npm test
@@ -19,3 +29,17 @@ test('adds 1 + 2 to equal 3', () => {
 // Snapshots:   0 total
 // Time:        0.466s
 // Ran all test suites.
+
+
+test('newNote calls insetDB with correct note object', async () => {
+    const note = {
+        content : 'This my test case',
+        id: 1,
+        tags: ['hello']
+    }
+    insertDB.mockResolvedValue(note)
+
+    const result = await newNote(note.content, note.tags);
+    expect(result.content).toBe(note.content);
+    expect(result.tags).toBe(note.tags)
+})

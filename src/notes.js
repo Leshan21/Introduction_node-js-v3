@@ -1,5 +1,5 @@
 import { get } from "http";
-import { insetDB, saveDB, getDB } from "./db.js";
+import { insertDB, saveDB, getDB } from "./db.js";
 
 
 // Function to create a new note
